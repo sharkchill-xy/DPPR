@@ -6,10 +6,12 @@ USE_WANDB=${USE_WANDB:-"false"}
 
 # Basic Project Settings
 WANDB_PRJ_NAME=rlpr
-EXP_NAME=qwen_1.5b
-MODEL=Qwen/Qwen2.5-1.5B
+# EXP_NAME=qwen_1.5b
+# MODEL=Qwen/Qwen2.5-1.5
+EXP_NAME=qwen3_1.7b
+MODEL=Qwen/Qwen3-1.7B-Base
 
-export CUDA_VISIBLE_DEVICES=6,7
+export CUDA_VISIBLE_DEVICES=4,5
 N_GPUS_PER_NODE=2
 
 # Judge Settings
@@ -36,10 +38,10 @@ VAL_DIR=${VAL_DIR:-"./datasets/test"}
 VAL_FILES=[${VAL_DIR}'/MMLUPro-1000_Avg2.parquet',${VAL_DIR}'/Math-500_Avg2.parquet',${VAL_DIR}'/gpqa_diamond_Avg4.parquet',${VAL_DIR}'/AIME2024_Avg16.parquet',${VAL_DIR}'/WebInstruct-verified-val_Avg2.parquet',${VAL_DIR}'/Minerva_Avg4.parquet',${VAL_DIR}'/TheoremQA_Avg2.parquet']
 
 # Logging and Checkpointing
-export LOGS_PATH=data/logs
+export LOGS_PATH=data/logs/${EXP_NAME}
 export TENSORBOARD_DIR=./tensorboard
 mkdir -p "${TENSORBOARD_DIR}"
-VAL_SAVE_RESULTS_DIR=data/logs/test_generations_${EXP_NAME}
+VAL_SAVE_RESULTS_DIR=${LOGS_PATH}/test_generations
 mkdir -p "${VAL_SAVE_RESULTS_DIR}"
 LOCAL_DIR=data/checkpoints/${EXP_NAME}
 mkdir -p "${LOCAL_DIR}"

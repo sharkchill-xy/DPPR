@@ -969,8 +969,10 @@ class RayPPOTrainer(object):
         plt.close()
 
         
-        # Save histogram to data/logs/val_results
-        save_dir = "data/logs/val_results"
+        # Save histogram to LOGS_PATH/val_results
+        import os
+        logs_path = os.environ.get('LOGS_PATH', 'data/logs')
+        save_dir = os.path.join(logs_path, 'val_results')
         os.makedirs(save_dir, exist_ok=True)
         os.makedirs(os.path.join(save_dir, histogram_name.split('/')[0]), exist_ok=True)
         
@@ -2883,7 +2885,9 @@ class RayPPOTrainer(object):
         df.sort_values('uid', inplace=True)
 
         # Create directory if it doesn't exist
-        save_path = f"data/logs/train_generations/{self.config.trainer.experiment_name}_step{self.global_steps}.csv"
+        import os
+        logs_path = os.environ.get('LOGS_PATH', 'data/logs')
+        save_path = os.path.join(logs_path, f"train_generations/{self.config.trainer.experiment_name}_step{self.global_steps}.csv")
         os.makedirs(os.path.dirname(save_path), exist_ok=True)
         
         # Save to CSV
@@ -2987,7 +2991,9 @@ class RayPPOTrainer(object):
             if idx >= len(self.train_dataloader) + 4:
                 break
 
-        save_path = 'data/logs/promptgt2scoreA.json'
+        import os
+        logs_path = os.environ.get('LOGS_PATH', 'data/logs')
+        save_path = os.path.join(logs_path, 'promptgt2scoreA.json')
         with open(save_path, 'w') as file:
             print(f"We dump to {save_path}")
             json.dump(promptgt2scoreA, file)
@@ -3032,7 +3038,9 @@ class RayPPOTrainer(object):
             })
         
         # Create directory if it doesn't exist
-        save_path = f"data/logs/rollout/{self.config.trainer.experiment_name}_step{self.global_steps}.csv"
+        import os
+        logs_path = os.environ.get('LOGS_PATH', 'data/logs')
+        save_path = os.path.join(logs_path, f"rollout/{self.config.trainer.experiment_name}_step{self.global_steps}.csv")
         os.makedirs(os.path.dirname(save_path), exist_ok=True)
         
         df = pd.DataFrame(results)

@@ -36,10 +36,10 @@ VAL_FILES=[${VAL_DIR}'/MMLUPro-1000_Avg2.parquet',${VAL_DIR}'/Math-500_Avg2.parq
 export VLLM_ALLOW_LONG_MAX_MODEL_LEN=1 # For Gemma only
 
 # Logging and Checkpointing
-export LOGS_PATH=data/logs
+export LOGS_PATH=data/logs/${EXP_NAME}
 export TENSORBOARD_DIR=./tensorboard
 mkdir -p "${TENSORBOARD_DIR}"
-VAL_SAVE_RESULTS_DIR=data/logs/test_generations_${EXP_NAME}
+VAL_SAVE_RESULTS_DIR=${LOGS_PATH}/test_generations
 mkdir -p "${VAL_SAVE_RESULTS_DIR}"
 LOCAL_DIR=data/checkpoints/${EXP_NAME}
 mkdir -p "${LOCAL_DIR}"

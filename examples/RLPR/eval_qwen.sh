@@ -29,8 +29,8 @@ VAL_DIR=${VAL_DIR:-"./datasets/test"}
 VAL_FILES=[${VAL_DIR}'/MMLUPro-1000_Avg2.parquet',${VAL_DIR}'/Math-500_Avg2.parquet',${VAL_DIR}'/gpqa_diamond_Avg4.parquet',${VAL_DIR}'/AIME2024_Avg16.parquet',${VAL_DIR}'/WebInstruct-verified-val_Avg2.parquet',${VAL_DIR}'/Minerva_Avg4.parquet',${VAL_DIR}'/TheoremQA_Avg2.parquet']
 
 # 日志和结果保存
-export LOGS_PATH=data/logs
-VAL_SAVE_RESULTS_DIR=data/logs/eval_checkpoint_100
+export LOGS_PATH=data/logs/${EXP_NAME:-qwen3_1.7b}
+VAL_SAVE_RESULTS_DIR=${LOGS_PATH}/eval_checkpoint_100
 mkdir -p "${VAL_SAVE_RESULTS_DIR}"
 
 # 环境变量
