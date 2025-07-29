@@ -6,7 +6,6 @@ This project is developed based on [OpenBMB/RLPR](https://github.com/OpenBMB/RLP
 
 </div>
 
-<div align="center" style="font-size: 15pt">
 
 
 ## 🎊 News <!-- omit in toc -->
